@@ -15,7 +15,7 @@ To address this shortcoming, this script performs the following steps:
 An example of running the script is provided below:
 
 ```bash
-gord@DESKTOP-95FCMJP:~/aws-util$ ./ec2-provision.sh
+gord@localhost:~/aws-util$ ./ec2-provision.sh
 
 ============================================================
  EC2 Instance Provisioning
@@ -42,10 +42,10 @@ Continue? [Y/n]: Y
 
 Checking AWS credentials...
 AWS authentication successful.
-AWS Account: 699757609476
+AWS Account: **************
 
 Finding the default VPC...
-Using VPC: vpc-0a9e7992ea2730f21
+Using VPC: vpc-**************
 
 Checking whether g6.xlarge is offered in ca-central-1...
 g6.xlarge is offered in ca-central-1.
@@ -75,28 +75,28 @@ Private key saved to:
     /home/gord/.ssh/my-linux-vm-ca-central-1-key.pem
 
 Checking security group...
-Using existing security group: sg-01741c83abcedc736
+Using existing security group: sg-***************
 
 Checking SSH access rule for 99.249.106.64/32...
 SSH access already authorized.
-Existing rule: sgr-0997211b560ed90d3
+Existing rule: sgr-***************
 
 Finding latest Amazon Linux 2023 AMI...
-Using AMI: ami-06a19372fab295de9
+Using AMI: ami-****************
 
 ============================================================
  Ready to launch
 ============================================================
 
-AWS Account:        699757609476
+AWS Account:        ************
 Region:             ca-central-1
 Availability Zone:  auto
 Instance Type:      g6.xlarge
 Instance Name:      my-linux-vm
-AMI:                ami-06a19372fab295de9
-VPC:                vpc-0a9e7992ea2730f21
-Security Group:     sg-01741c83abcedc736
-SSH Source:         99.249.106.64/32
+AMI:                ami-***************
+VPC:                vpc-***************
+Security Group:     sg-****************
+SSH Source:         **.**.**.**/32
 SSH Key:            my-linux-vm-ca-central-1-key
 Root Disk:          20 GB gp3
 
@@ -110,11 +110,11 @@ Attempting EC2 launch...
 Trying:
   Instance: g6.xlarge
   AZ:       ca-central-1b
-  Subnet:   subnet-09e131c72520e9eb2
+  Subnet:   subnet-**************
 ------------------------------------------------------------
 
 SUCCESS: Instance launched in ca-central-1b.
-Instance ID: i-0fdd4d6eef9403871
+Instance ID: i-***************
 
 Waiting for instance to enter the running state...
 Instance is running.
@@ -127,16 +127,16 @@ AWS status checks passed.
 ============================================================
 
 Instance Name:       my-linux-vm
-Instance ID:         i-0fdd4d6eef9403871
+Instance ID:         i-****************
 Instance Type:       g6.xlarge
 
 Region:              ca-central-1
 Availability Zone:   ca-central-1b
-Subnet:              subnet-09e131c72520e9eb2
+Subnet:              subnet-******************
 
 Public IP:           3.98.145.168
 Private IP:          172.31.9.215
-Public DNS:          ec2-3-98-145-168.ca-central-1.compute.amazonaws.com
+Public DNS:          ec2-**-**-**-**.ca-central-1.compute.amazonaws.com
 ```
 
  
