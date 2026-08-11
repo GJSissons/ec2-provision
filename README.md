@@ -1,4 +1,4 @@
-# ec2-provision
+# ec2-provision.sh
 
 While experimenting with open-source LLMs on AWS, I found myself repeatedly provisioning EC2 instances by hand. I wrote this script to automate the process of launching an EC2 instance using my AWS credentials while allowing me to choose the AWS region, Availability Zone (or automatically search multiple AZs), and instance type.  
 
