@@ -1,16 +1,22 @@
 # ec2-provision
-A general script to provision and manage EC2 instances.
 
-While experimenting with running various open-source LLMs, I found it useful to have a generic provisioning script that would use my AWS credentials to automatically launch a user-defined AWS instance type into my chosen region and availability zone.  
+While experimenting with open-source LLMs on AWS, I found myself repeatedly provisioning EC2 instances by hand. I wrote this script to automate the process of launching an EC2 instance using my AWS credentials while allowing me to choose the AWS region, Availability Zone (or automatically search multiple AZs), and instance type.  
 
-A common problem when launching GPU instances, is that the desired instance type is often unavailable in a particular availability zone (AZ)
+GPU-backed EC2 instances are often capacity constrained. Although an instance type may be supported in a particular Availability Zone, AWS may return an InsufficientInstanceCapacity error if no physical GPU capacity is currently available. This script can automatically search multiple Availability Zones within a region to improve the chances of successfully launching an instance.
 
-To address this shortcoming, this script performs the following steps:
+A common problem when launching GPU instances, is that they are under high-demand, and the desired instance type is often unavailable in a particular availability zone (AZ). For example, ideally I'd like to use a g6.xlarge instance to run my LLM , however I may find that only more expensive g6.12xlarge or g6.24xlarge instances are available. I'd like to start with the least expensive instance type and have the script explore all availability zones in a region.
 
-* It validates that pre-requisite commands such as the AWS CLI are available
-* It asks users to enter a preferred AWS region (My script defaults to the AWS Canada region, but you can over-rise this)
-* The script allows "auto" to be entered as the Availability Zone which will have the script search different AZ's for avalability of the desired instance type
-* Finally, users can select the instance type required to run their desired model - i.e., g6.xlarge
+This script performs the following steps:
+
+* Validates the AWS CLI and other required tools.
+* Authenticates using your configured AWS credentials.
+* Allows the AWS Region to be selected (default ca-central-1).
+* Supports automatic Availability Zone selection to improve the chances of finding GPU capacity.
+* Allows any EC2 instance type to be specified.
+* Creates or reuses EC2 SSH key pairs.
+* Creates or reuses a security group with SSH access restricted to the current public IP.
+* Uses the latest Amazon Linux 2023 AMI.
+* Waits for the instance to become available and prints the SSH command.
 
 An example of running the script is provided below:
 
@@ -139,4 +145,15 @@ Private IP:          172.31.9.215
 Public DNS:          ec2-**-**-**-**.ca-central-1.compute.amazonaws.com
 ```
 
+## Prerequisites
+
+Before running the script you should:
+
+- Install the AWS CLI v2.
+- Configure your AWS credentials using:
+
+```bash
+aws configure
+
+While this repository and README were created and curated by hand, I used the OpenAI GPT-5.5 Instant model to help write and debug the ec2-provision.sh script. 
  
