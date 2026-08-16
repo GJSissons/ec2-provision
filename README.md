@@ -154,6 +154,7 @@ Before running the script you should:
 
 ```bash
 aws configure
+```
 
 While this repository and README were created and curated by hand, I used the OpenAI GPT-5.5 Instant model to help write and debug the ec2-provision.sh script. 
  
