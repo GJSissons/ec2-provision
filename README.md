@@ -1,10 +1,8 @@
 # ec2-provision.sh
 
-While experimenting with open-source LLMs on AWS, I found myself repeatedly provisioning EC2 instances by hand. I wrote this script to automate the process of launching an EC2 instance using my AWS credentials while allowing me to choose the AWS region, Availability Zone (or automatically search multiple AZs), and instance type.  
+While experimenting with open-source LLMs on AWS, I found myself repeatedly provisioning EC2 instances by hand. I wrote this script to automate the process of launching EC2 instances. The script allows me to select an AWS region, Availability Zone (or automatically search multiple AZs), and instance type.  
 
-GPU-backed EC2 instances are often capacity constrained. Although an instance type may be supported in a particular Availability Zone, AWS may return an InsufficientInstanceCapacity error if no physical GPU capacity is currently available. This script can automatically search multiple Availability Zones within a region to improve the chances of successfully launching an instance.
-
-A common problem when launching GPU instances, is that they are under high-demand, and the desired instance type is often unavailable in a particular availability zone (AZ). For example, ideally I'd like to use a g6.xlarge instance to run my LLM , however I may find that only more expensive g6.12xlarge or g6.24xlarge instances are available. I'd like to start with the least expensive instance type and have the script explore all availability zones in a region.
+GPU-backed EC2 instances are often capacity constrained. AWS may return an InsufficientInstanceCapacity error if no physical capacity is currently available for the requested instance type. This script can automatically search multiple Availability Zones within a region to improve the chances of successfully the a required instance. This is achieved by setting "auto" rather than specifying a particular availability zone.
 
 This script performs the following steps:
 
@@ -156,5 +154,5 @@ Before running the script you should:
 aws configure
 ```
 
-While this repository and README were created and curated by hand, I used the OpenAI GPT-5.5 Instant model to help write and debug the ec2-provision.sh script. 
+I used the OpenAI GPT-5.5 Instant model to help write and debug the ec2-provision.sh script. 
  
